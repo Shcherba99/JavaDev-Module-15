@@ -38,15 +38,11 @@ public class NoteController {
     /**
      * Adds a new note with the specified title and content.
      *
-     * @param title   the title of the note to be added.
-     * @param content the content of the note to be added.
+     * @param note the {@link Note} object to be added.
      * @return a {@link ModelAndView} object redirecting to the "/note/list" endpoint.
      */
     @PostMapping("/note/add")
-    public ModelAndView addNote(@RequestParam String title, @RequestParam String content) {
-        Note note = new Note();
-        note.setTitle(title);
-        note.setContent(content);
+    public ModelAndView addNote(@ModelAttribute Note note) {
         noteService.add(note);
         return new ModelAndView("redirect:/note/list");
     }
