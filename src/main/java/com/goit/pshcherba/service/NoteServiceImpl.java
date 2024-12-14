@@ -2,7 +2,6 @@ package com.goit.pshcherba.service;
 
 import com.goit.pshcherba.entity.Note;
 import com.goit.pshcherba.exception.NoteDeleteException;
-import com.goit.pshcherba.exception.NoteGetException;
 import com.goit.pshcherba.exception.NoteUpdateException;
 import org.springframework.stereotype.Service;
 
@@ -68,7 +67,7 @@ public class NoteServiceImpl implements NoteService {
      * @throws NoSuchElementException if no note with the given ID is found.
      */
     @Override
-    public void update(Note note) throws NoteUpdateException {
+    public void update(Note note) {
         long id = note.getId();
         if (!noteMap.containsKey(id)) {
             throw new NoteUpdateException(id);

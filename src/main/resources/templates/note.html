@@ -10,8 +10,7 @@
 <div class="container mt-5">
     <h1 class="mb-4">Notes</h1>
 
-    <!-- Форма додавання нотатки -->
-    <form action="/notes/add" method="post" class="mb-4">
+    <form action="/note/add" method="post" class="mb-4">
         <div class="row g-2">
             <div class="col-md-4">
                 <label>
@@ -29,7 +28,6 @@
         </div>
     </form>
 
-    <!-- Таблиця з нотатками -->
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>
@@ -43,7 +41,7 @@
         <tr th:each="note : ${notes}">
             <td th:text="${note.id}"></td>
             <td>
-                <form action="/notes/update" method="post">
+                <form action="/note/edit" method="post">
                     <input type="hidden" name="id" th:value="${note.id}">
                     <label>
                         <input type="text" class="form-control" name="title" th:value="${note.title}" required>
@@ -51,7 +49,7 @@
                 </form>
             </td>
             <td>
-                <form action="/notes/update" method="post">
+                <form action="/note/edit" method="post">
                     <input type="hidden" name="id" th:value="${note.id}">
                     <label>
                         <input type="text" class="form-control" name="content" th:value="${note.content}" required>
@@ -59,7 +57,7 @@
                 </form>
             </td>
             <td>
-                <form action="/notes/delete" method="post" class="d-inline">
+                <form action="/note/delete" method="post" class="d-inline">
                     <input type="hidden" name="id" th:value="${note.id}">
                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                 </form>

@@ -27,11 +27,11 @@ public class NoteController {
     /**
      * Redirects the root URL ("/") to the list of notes.
      *
-     * @return a {@link ModelAndView} object redirecting to the "/notes" endpoint.
+     * @return a {@link ModelAndView} object redirecting to the "/note/list" endpoint.
      */
     @GetMapping("/")
     public ModelAndView redirectToNotes() {
-        return new ModelAndView("redirect:/notes");
+        return new ModelAndView("redirect:/note/list");
     }
 
 
@@ -40,15 +40,15 @@ public class NoteController {
      *
      * @param title   the title of the note to be added.
      * @param content the content of the note to be added.
-     * @return a {@link ModelAndView} object redirecting to the "/notes" endpoint.
+     * @return a {@link ModelAndView} object redirecting to the "/note/list" endpoint.
      */
-    @PostMapping("/notes/add")
+    @PostMapping("/note/add")
     public ModelAndView addNote(@RequestParam String title, @RequestParam String content) {
         Note note = new Note();
         note.setTitle(title);
         note.setContent(content);
         noteService.add(note);
-        return new ModelAndView("redirect:/notes");
+        return new ModelAndView("redirect:/note/list");
     }
 
 
@@ -56,12 +56,12 @@ public class NoteController {
      * Updates an existing note based on the provided note object.
      *
      * @param note the {@link Note} object containing updated information.
-     * @return a {@link ModelAndView} object redirecting to the "/notes" endpoint.
+     * @return a {@link ModelAndView} object redirecting to the "/note/list" endpoint.
      */
-    @PostMapping("/notes/update")
-    public ModelAndView updateNote(@ModelAttribute Note note) {
+    @PostMapping("/note/edit")
+    public ModelAndView editNote(@ModelAttribute Note note) {
         noteService.update(note);
-        return new ModelAndView("redirect:/notes");
+        return new ModelAndView("redirect:/note/list");
     }
 
 
@@ -69,12 +69,12 @@ public class NoteController {
      * Deletes an existing note by its ID.
      *
      * @param id the ID of the note to be deleted.
-     * @return a {@link ModelAndView} object redirecting to the "/notes" endpoint.
+     * @return a {@link ModelAndView} object redirecting to the "/note/list" endpoint.
      */
-    @PostMapping("/notes/delete")
+    @PostMapping("/note/delete")
     public ModelAndView deleteNote(@RequestParam Long id) {
         noteService.deleteById(id);
-        return new ModelAndView("redirect:/notes");
+        return new ModelAndView("redirect:/note/list");
     }
 
 
@@ -83,7 +83,7 @@ public class NoteController {
      *
      * @return a {@link ModelAndView} object containing the list of notes.
      */
-    @GetMapping("/notes")
+    @GetMapping("/note/list")
     public ModelAndView getAllNotes() {
         ModelAndView model = new ModelAndView("note");
         List<Note> notes = noteService.listAll();
