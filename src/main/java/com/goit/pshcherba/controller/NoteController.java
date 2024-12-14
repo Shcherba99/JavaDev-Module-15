@@ -25,11 +25,11 @@ public class NoteController {
 
 
     /**
-     * Redirects the root URL ("/") to the list of notes.
+     * Redirects the root URLs ("/" and "/note") to the list of notes.
      *
      * @return a {@link ModelAndView} object redirecting to the "/note/list" endpoint.
      */
-    @GetMapping("/")
+    @GetMapping({"/","/note"})
     public ModelAndView redirectToNotes() {
         return new ModelAndView("redirect:/note/list");
     }
